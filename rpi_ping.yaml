@@ -1,0 +1,9 @@
+# Ansible playbook to ping raspberry pi devices
+# rpi_ping.yaml
+#
+# last updated: 06-Oct-2019
+-   name: Ping Raspberry Pi
+    hosts: rpi
+    tasks:
+    -  name: ping rpi
+       ping:
