@@ -1,0 +1,12 @@
+# Ansible playbook for rebooting RPI systems 
+# rpi_reboot.yaml
+#
+# last updated: 05-Oct-2019
+-   name: Restart Raspberry Pi
+    hosts: rpi
+    tasks:
+    -  name: Execute command date
+       command: date
+
+    -  name: Execute command reboot
+       command: sudo reboot
