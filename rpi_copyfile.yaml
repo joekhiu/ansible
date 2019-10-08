@@ -1,0 +1,11 @@
+# Ansible playbook for copying file(s) to rpi
+# rpi_copyfile.yaml
+#
+# last updated: 08-Oct-2019
+-    name: Copy files to Raspberry Pi
+     hosts: rpi
+     tasks:
+       -  name: Copy file(s)
+          copy:
+              src: /home/pi/Desktop/ansibletest.txt
+              dest: /home/pi/Desktop/ansibletest.txt
