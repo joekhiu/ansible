@@ -1,0 +1,12 @@
+# Ansible playbook for disabling prompt for
+# upgrading to MacOS Catalina
+# mac_disablecatalinaprompt.yaml
+#
+#
+# last updated: 09-Oct-2019
+-    name: Disable Catalina update prompt
+     hosts: mac
+     tasks:
+
+        -    name: Execute command
+             command: softwareupdate --ignore "macOS Catalina"
