@@ -1,0 +1,37 @@
+# Ansible playbook for checking whether service is up and emailing admin if down
+# rpi_checkservice.yaml
+#
+# Section 7 Ansible Variables, Lesson 21 - Ansible Variables
+#
+# last updated: 12-Oct-2019
+-    name: Check service status
+     hosts: rpi
+     vars:
+          strFromEmail: 'Contoso Alert <sendfrom@contoso.com>'
+          strToEmail: 'Contoso Admin <sendto@contoso.com>'
+          strMailboxLogin: 'sendfrom@contoso.com'
+          strMailboxPwd: 'abcxyz123456'
+          strHost: 'smtp.contoso.com'
+          nPort: 465
+     tasks:
+
+        -    name: Get service facts
+             service_facts:
+
+        -    name: Show Apache status
+             debug:
+               var: ansible_facts.services["apache2.service"]
+
+        -    name: Email admin if service is down
+             mail:
+                 host: '{{ strHost }}'
+                 port: '{{ nPort }}'
+                 username: '{{ strMailboxLogin }}'
+                 password: '{{ strMailboxPwd }}'
+                 from: '{{ strFromEmail }}'
+                 to: '{{ strToEmail }}'
+                 subject: '{{ ansible_hostname }}: {{ ansible_facts.services["apache2.service"].name }} down'
+                 body: '{{ ansible_hostname }}: {{ ansible_facts.services["apache2.service"].name }} is down'
+                 secure: starttls
+             delegate_to: localhost
+             when: ansible_facts.services["apache2.service"].state != "running"
