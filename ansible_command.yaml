@@ -1,0 +1,49 @@
+# Ansible playbook for running commands remotely
+# ansible_command.yaml
+#
+# Section 6 Ansible Modules, Lesson 18 - Ansible Modules
+#
+# last updated: 12-Oct-2019
+-    name: Run commands on remote Linux systems
+     hosts: rpi
+     tasks:
+        #-    name: Execute command date
+        #     shell: date > /home/pi/Desktop/output.txt
+
+        #-    name: Display resolv.conf contents
+        #     shell: cat /etc/resolv.conf >> /home/pi/Desktop/ansible-output.txt
+
+        #-    name: Run a script on remote systems
+        #     script: /etc/ansible/playbooks/rpi_showresolv.sh
+
+        #-    name: stop Apache2
+        #     service: name=apache2 state=stopped
+        #     become: yes
+
+        #-    name: start Apache2
+        #     service:
+        #         name: apache2
+        #         state: started
+        #     become: yes
+
+        #    Adds new DNS server if line doesn't already exist
+        #-    name: Add new DNS Server to resolv.conf
+        #     lineinfile:
+        #         path: /etc/resolv.conf
+        #         line: 'nameserver 192.168.1.2'
+        #     become: yes
+
+        #-    name: Add the user 'rpitest' to pi group
+        #     user:
+        #         name: rpitest
+        #         comment: Ansible Test account
+        #         uid: 7777
+        #         group: pi
+        #     become: yes
+
+        -    name: Remove the user 'rpitest'
+             user:
+                 name: rpitest
+                 state: absent
+                 remove: yes
+             become: yes
