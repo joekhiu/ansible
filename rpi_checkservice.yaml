@@ -1,7 +1,7 @@
 # Ansible playbook for checking whether service is up and emailing admin if down
 # rpi_checkservice.yaml
 #
-# Section 7 Ansible Variables, Lesson 21 - Ansible Variables
+# Section 8 Conditionals, Lesson 22 - Conditionals
 #
 # last updated: 12-Oct-2019
 -    name: Check service status
