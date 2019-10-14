@@ -6,26 +6,25 @@
 # last updated: 14-Oct-2019
 -    name: Install packages on Raspberry Pi
      hosts: rpi
+     vars:
+         packages:
+             - docker
+             - leafpad
+     become: yes
      tasks:
 
-       # use apt for Debian/Ubuntu
-       -   name: install list of packages
-           apt:
-               name: '{{ packages }}'
-           vars:
-               packages:
-                   - docker
-                   - leafpad
-           become: yes
+     # use apt for Debian/Ubuntu
+     -   name: install list of packages
+         apt:
+           name: '{{ packages }}'
 
-       # remove above packages
-       -   name: uninstall list of packages
-           apt:
-              name: '{{ packages }}'
-              state: absent
-           vars:
-              packages:
-                   - docker
-                   - wmdocker
-                   - leafpad
-           become: yes
+     # remove above packages
+     -   name: uninstall list of packages
+         apt:
+           name: '{{ packages }}'
+           state: absent
+
+     # autoremove dependencies, eg: wmdocker
+     -  name: apt-get autoremove
+        apt:
+            autoremove: yes
