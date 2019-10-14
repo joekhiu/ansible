@@ -1,0 +1,31 @@
+# Ansible playbook for installing multiple packages
+# rpi_installpkgs.yaml
+#
+# Section 9 Loops, Lesson 24 - Loops
+#
+# last updated: 14-Oct-2019
+-    name: Install packages on Raspberry Pi
+     hosts: rpi
+     tasks:
+
+       # use apt for Debian/Ubuntu
+       -   name: install list of packages
+           apt:
+               name: '{{ packages }}'
+           vars:
+               packages:
+                   - docker
+                   - leafpad
+           become: yes
+
+       # remove above packages
+       -   name: uninstall list of packages
+           apt:
+              name: '{{ packages }}'
+              state: absent
+           vars:
+              packages:
+                   - docker
+                   - wmdocker
+                   - leafpad
+           become: yes
