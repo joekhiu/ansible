@@ -1,21 +1,24 @@
-# Ansible playbook for updating RPI systems 
+# Ansible playbook for updating RPI systems
 # rpi_update.yaml
 #
-# last updated: 06-Oct-2019
+# last updated: 14-Oct-2019
 -   name: Update Raspberry Pi
     hosts: rpi
+    become: yes
     tasks:
+      
     -  name: apt-get update
        apt:
          update_cache: yes
-         become: yes
 
     -  name: apt-get dist-upgrade
        apt:
          upgrade: dist
-         become: yes
 
     -  name: apt-get clean
        apt:
-       autoclean: yes
-       become: yes
+         autoclean: yes
+
+    -  name: apt-get autoremove
+       apt:
+         autoremove: yes
