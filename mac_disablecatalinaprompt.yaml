@@ -8,5 +8,8 @@
      hosts: mac
      tasks:
 
-        -    name: Execute command
+        -    name: Disable banner within Software Update
              command: softwareupdate --ignore "macOS Catalina"
+
+        -    name: Disable dock icon indicator of available updates (red "1" indicator)
+             command: defaults write com.apple.systempreferences AttentionPrefBundleIDs 0
